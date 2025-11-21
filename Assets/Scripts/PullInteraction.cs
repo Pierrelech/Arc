@@ -4,18 +4,18 @@ using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PullInteraction : XRBaseInteractable
+public class PullInteraction : UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable
 {
     public static event Action<float> PullActionReleased;
 
     public Transform start, end;
     public GameObject notch;
 
-    public AudioSource releaseSound;  // Ajoutez cette référence
+    public AudioSource releaseSound;  // Ajoutez cette rï¿½fï¿½rence
     public float pullAmount { get; private set; } = 0.0f;
 
     private LineRenderer _lineRenderer;
-    private IXRSelectInteractor pullingInteractor = null;
+    private UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor pullingInteractor = null;
 
     protected override void Awake()
     {
@@ -32,7 +32,7 @@ public class PullInteraction : XRBaseInteractable
     {
         PullActionReleased?.Invoke(pullAmount);
 
-        // Joue le son de relâchement si l'AudioSource est configurée
+        // Joue le son de relï¿½chement si l'AudioSource est configurï¿½e
         if (releaseSound != null)
         {
             releaseSound.Play();

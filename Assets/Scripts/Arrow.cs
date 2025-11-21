@@ -44,7 +44,7 @@ public class Arrows : MonoBehaviour
         yield return new WaitForFixedUpdate();
         while (_inAir)
         {
-            Quaternion newRotation = Quaternion.LookRotation(_rigidBody.velocity, transform.up);
+            Quaternion newRotation = Quaternion.LookRotation(_rigidBody.linearVelocity, transform.up);
             transform.rotation = newRotation;
             yield return null;
         }
@@ -66,29 +66,29 @@ public class Arrows : MonoBehaviour
     {
         if (Physics.Linecast(_lastPosition, tip.position, out RaycastHit hitInfo))
         {
-            // Vérifie que l'objet touché n'a pas le tag "Cible"
+            // Vï¿½rifie que l'objet touchï¿½ n'a pas le tag "Cible"
             if (!hitInfo.transform.CompareTag("Cible"))
             {
-                // Si l'objet a un Rigidbody, applique une force à l'objet touché
+                // Si l'objet a un Rigidbody, applique une force ï¿½ l'objet touchï¿½
                 if (hitInfo.transform.TryGetComponent(out Rigidbody body))
                 {
                     _rigidBody.interpolation = RigidbodyInterpolation.None;
                     transform.parent = hitInfo.transform;
-                    body.AddForce(_rigidBody.velocity, ForceMode.Impulse);
+                    body.AddForce(_rigidBody.linearVelocity, ForceMode.Impulse);
                 }
 
-                // Plante la flèche à la position exacte du point d'impact
+                // Plante la flï¿½che ï¿½ la position exacte du point d'impact
                 transform.position = hitInfo.point - tip.localPosition;
                 transform.rotation = Quaternion.LookRotation(hitInfo.normal, Vector3.up);
 
-                // Stoppe la flèche
+                // Stoppe la flï¿½che
                 Stop();
                 Destroy(gameObject);
             }
             else
             {
-                // Si l'objet est une cible, ne plante pas la flèche
-                Debug.Log("Collision avec une cible ignorée.");
+                // Si l'objet est une cible, ne plante pas la flï¿½che
+                Debug.Log("Collision avec une cible ignorï¿½e.");
             }
         }
     }
