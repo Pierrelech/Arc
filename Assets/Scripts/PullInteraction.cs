@@ -33,9 +33,10 @@ public class PullInteraction : XRBaseInteractable
         PullActionReleased?.Invoke(pullAmount);
 
         // Joue le son de relâchement si l'AudioSource est configurée
-        
-        releaseSound.Play();
-        
+        if (releaseSound != null)
+        {
+            releaseSound.Play();
+        }
 
         pullingInteractor = null;
         pullAmount = 0f;

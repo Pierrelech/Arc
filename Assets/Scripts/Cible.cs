@@ -24,10 +24,9 @@ public class Cible : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Arrow"))
         {
-            if (audioExplode != null)
-            {
+            
                 audioExplode.Play();
-            }
+            
             // Déclenche l'effet de particules
             TriggerExplosion();
 
