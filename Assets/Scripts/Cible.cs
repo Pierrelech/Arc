@@ -22,10 +22,10 @@ public class Cible : MonoBehaviour
     // Détection des collisions
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Arrow"))
+        if (collision.gameObject.CompareTag("Arrow") || collision.gameObject.CompareTag("Bullet"))
         {
             
-                audioExplode.Play();
+            audioExplode.Play();
             
             // Déclenche l'effet de particules
             TriggerExplosion();

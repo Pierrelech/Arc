@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 
 public class ArrowSpawner : MonoBehaviour
 {
-    public GameObject arrow;  // Le prefab de la flèche
-    public GameObject notch;  // L'objet où la flèche doit être attachée
+    public GameObject arrow;  // Le prefab de la flï¿½che
+    public GameObject notch;  // L'objet oï¿½ la flï¿½che doit ï¿½tre attachï¿½e
 
-    private XRGrabInteractable _bow;
+    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _bow;
     private bool _arrowNotched = false;
     private GameObject _currentArrow = null;
 
@@ -18,7 +18,7 @@ public class ArrowSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _bow = GetComponent<XRGrabInteractable>();
+        _bow = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         PullInteraction.PullActionReleased += NotchEmpty;
     }
 
@@ -36,10 +36,10 @@ public class ArrowSpawner : MonoBehaviour
             StartCoroutine("DelayedSpawn");
         }
 
-        // Si la flèche est encochée et existe, actualiser sa position et sa rotation
+        // Si la flï¿½che est encochï¿½e et existe, actualiser sa position et sa rotation
 
 
-        // Si l'arc n'est plus sélectionné, détruire la flèche et réinitialiser
+        // Si l'arc n'est plus sï¿½lectionnï¿½, dï¿½truire la flï¿½che et rï¿½initialiser
         if (!_bow.isSelected && _currentArrow != null)
         {
             Destroy(_currentArrow);
@@ -56,10 +56,10 @@ public class ArrowSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
 
-        // Instancier la flèche
+        // Instancier la flï¿½che
         _currentArrow = Instantiate(arrow, notch.transform);
 
-        // Ajuster immédiatement la position et la rotation de la flèche
+        // Ajuster immï¿½diatement la position et la rotation de la flï¿½che
 
     }
 
