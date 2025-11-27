@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class TargetSpawner : MonoBehaviour
 {
-    public GameObject cible;  // Le prefab de la cible
-    public Transform player;  // Le joueur autour duquel les cibles apparaissent
+    public Transform player;      // Le joueur autour duquel les cibles apparaissent
     public float spawnRadius = 10f;  // Rayon autour du joueur
     public float spawnHeight = 5f;   // Hauteur à laquelle les cibles apparaissent
-    private List<GameObject> activeCibles = new List<GameObject>(); // Liste des cibles actives
-    private int maxCibles = 5;
+    public int maxCibles = 5;        // Nombre max de cibles en même temps
+    public float respawnDelay = 1f;  // Délai avant réapparition
+
+    private List<GameObject> activeCibles = new List<GameObject>();
 
     void Start()
     {
@@ -22,12 +23,20 @@ public class TargetSpawner : MonoBehaviour
 
     void SpawnTarget()
     {
+        if (TargetPool.Instance == null)
+        {
+            Debug.LogWarning("TargetPool non présent dans la scène !");
+            return;
+        }
+
+        // Récupère une cible dans le pool
+        GameObject newCible = TargetPool.Instance.GetTarget();
+
         // Génère une position aléatoire autour du joueur
         Vector3 randomPos = player.position + (Random.insideUnitSphere * spawnRadius);
         randomPos.y = spawnHeight;  // Place la cible en hauteur
 
-        // Instancie la cible
-        GameObject newCible = Instantiate(cible, randomPos, Quaternion.identity);
+        newCible.transform.position = randomPos;
 
         // Oriente la cible vers le joueur
         newCible.transform.LookAt(player);
@@ -38,16 +47,21 @@ public class TargetSpawner : MonoBehaviour
 
     public void OnCibleDestroyed(GameObject cibleDetruite)
     {
-        // Retire la cible détruite de la liste
+        // Retire la cible de la liste des actives
         activeCibles.Remove(cibleDetruite);
 
-        // Réinstancie la cible après 1 seconde
+        // Réapparition après un délai
         StartCoroutine(RespawnTarget());
     }
 
     IEnumerator RespawnTarget()
     {
-        yield return new WaitForSeconds(1f);
-        SpawnTarget();
+        yield return new WaitForSeconds(respawnDelay);
+
+        // On respawn seulement si on n’a pas déjà atteint le max
+        if (activeCibles.Count < maxCibles)
+        {
+            SpawnTarget();
+        }
     }
 }

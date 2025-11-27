@@ -12,11 +12,10 @@ public class GunShooter : MonoBehaviour
     public float fireRate = 0.2f;               // cadence (en secondes entre 2 tirs)
     public float damage = 10f;
     public float range = 100f;
-    public LayerMask hitMask = ~0;             // sur quoi le rayon peut toucher
+    public LayerMask hitMask = ~0;              // sur quoi le rayon peut toucher
 
-    [Header("Projectile (optionnel)")]
-    public GameObject bulletPrefab;            // si tu veux instancier un projectile
-    public float bulletSpeed = 30f;
+    [Header("Projectile (pool)")]
+    public float bulletSpeed = 30f;             // vitesse des projectiles
 
     [Header("FX")]
     public ParticleSystem muzzleFlash;
@@ -34,7 +33,6 @@ public class GunShooter : MonoBehaviour
     {
         if (grabInteractable != null)
         {
-            // Appel� quand tu appuies sur la g�chette (Activate)
             grabInteractable.activated.AddListener(OnActivated);
         }
     }
@@ -64,37 +62,41 @@ public class GunShooter : MonoBehaviour
     private void Shoot()
     {
         // FX
-        if (muzzleFlash != null)
+        // FX visuel via Addressables
+        if (FXAddressableManager.Instance != null && muzzleTransform != null)
         {
-            muzzleFlash.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-            muzzleFlash.Play();
+            FXAddressableManager.Instance.PlayMuzzleFlash(muzzleTransform);
         }
 
 
         if (audioSource != null && shotClip != null)
             audioSource.PlayOneShot(shotClip);
 
-        // Si tu as un prefab de balle, on l'instancie
-        if (bulletPrefab != null)
+        // --- TIR AVEC PROJECTILE DU POOL ---
+        if (ProjectilePool.Instance != null)
         {
-            GameObject bullet = Instantiate(bulletPrefab, muzzleTransform.position, muzzleTransform.rotation);
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            if (rb != null)
+            GameObject bullet = ProjectilePool.Instance.GetProjectile();
+
+            // Position & rotation au niveau du canon
+            bullet.transform.position = muzzleTransform.position;
+            bullet.transform.rotation = muzzleTransform.rotation;
+
+            // Lancer le projectile
+            Projectile proj = bullet.GetComponent<Projectile>();
+            if (proj != null)
             {
-                rb.linearVelocity = muzzleTransform.forward * bulletSpeed;
+                proj.Launch(muzzleTransform.forward, bulletSpeed);
             }
         }
         else
         {
-            // Sinon : tir en raycast (hitscan)
+            // Fallback : raycast (au cas où le pool n'est pas dans la scène)
             Ray ray = new Ray(muzzleTransform.position, muzzleTransform.forward);
             if (Physics.Raycast(ray, out RaycastHit hit, range, hitMask))
             {
-                // Debug : voir le tir dans la Scene view
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 1f);
 
-                // Chercher un script "Health" sur la cible (si tu en as un)
-
+                // Gestion des dégâts si tu as un script Health
             }
         }
     }

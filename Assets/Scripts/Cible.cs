@@ -1,52 +1,109 @@
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class Cible : MonoBehaviour
 {
     private TargetSpawner spawner;
-    public AudioSource audioExplode;
-    public GameObject explosionEffect;  // Référence au prefab du Particle System
-    public float explosionDuration = 2f;  // Durée de l'explosion
 
-    void Start()
+    [Header("FX")]
+    public AudioSource audioExplode;
+    public GameObject explosionEffect;
+    public float explosionDuration = 2f;
+
+    [Header("Reset Visuel")]
+    private Renderer rend;
+    private Color baseColor;
+    private Collider coll;
+
+    void Awake()
     {
         spawner = FindObjectOfType<TargetSpawner>();
         audioExplode = GetComponent<AudioSource>();
+        coll = GetComponent<Collider>();
 
-        // Joue le son à l'apparition
+        rend = GetComponent<Renderer>();
+        if (rend != null)
+        {
+            baseColor = rend.material.color;
+        }
+    }
+
+    void OnEnable()
+    {
+        // âœ… Remise Ã  zÃ©ro complÃ¨te Ã  chaque rÃ©apparition (TASK 2)
+        ResetState();
+
+        // âœ… Son Ã  lâ€™apparition (facultatif)
         if (audioExplode != null)
         {
             audioExplode.Play();
         }
     }
 
-    // Détection des collisions
+    // âœ… RESET COMPLET DE LA CIBLE
+    public void ResetState()
+    {
+        if (rend != null)
+        {
+            rend.material.color = baseColor;
+        }
+
+        if (coll != null)
+        {
+            coll.enabled = true;
+        }
+    }
+
+    // âœ… DÃ‰TECTION DES IMPACTS
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Arrow") || collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Arrow") ||
+            collision.gameObject.CompareTag("Bullet"))
         {
-            
-            audioExplode.Play();
-            
-            // Déclenche l'effet de particules
-            TriggerExplosion();
-
-
-            // Détruit la cible
-            Destroy(gameObject);
-
-            // Informe le spawner qu'une cible a été détruite
-            spawner.OnCibleDestroyed(gameObject);
+            Hit();
         }
     }
 
-    // Méthode pour déclencher l'explosion
+    // âœ… LOGIQUE DE DESTRUCTION (SANS DESTROY)
+    public void Hit()
+    {
+        if (audioExplode != null)
+            audioExplode.Play();
+
+        TriggerExplosion();
+
+        if (coll != null)
+            coll.enabled = false;
+
+        StartCoroutine(ReturnToPoolAfterDelay(0.1f));
+    }
+
+    IEnumerator ReturnToPoolAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // âœ… Informe le spawner
+        if (spawner != null)
+            spawner.OnCibleDestroyed(gameObject);
+
+        // âœ… Retour dans le pool (AU LIEU DE Destroy)
+        if (TargetPool.Instance != null)
+        {
+            TargetPool.Instance.ReturnTarget(gameObject);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    // âœ… EXPLOSION VISUELLE
     void TriggerExplosion()
     {
-        // Instancie l'effet d'explosion à la position de la cible
-        if (explosionEffect != null)
+        if (FXAddressableManager.Instance != null)
         {
-            GameObject explosion = Instantiate(explosionEffect, transform.position, transform.rotation);
-            Destroy(explosion, explosionDuration);  // Détruit l'explosion après un délai
+            FXAddressableManager.Instance.PlayImpactFX(transform.position, transform.rotation);
         }
     }
+
 }
