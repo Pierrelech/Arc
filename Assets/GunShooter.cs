@@ -65,7 +65,11 @@ public class GunShooter : MonoBehaviour
     {
         // FX
         if (muzzleFlash != null)
+        {
+            muzzleFlash.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             muzzleFlash.Play();
+        }
+
 
         if (audioSource != null && shotClip != null)
             audioSource.PlayOneShot(shotClip);
