@@ -22,3 +22,8 @@ EditorBuildSettings:
     com.unity.input.settings: {fileID: 11400000, guid: 5f8946cea6a93804c9d4c70c99d80452, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b6258a1111a4b5f449d9b79e32a476fa, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: c74fe07638a80814d8411c9953438c7b, type: 2}
+<<<<<<< Updated upstream
+=======
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 8b9030e2f02db5a4682328f490b874d9, type: 2}
+  m_UseUCBPForAssetBundles: 0
+>>>>>>> Stashed changes

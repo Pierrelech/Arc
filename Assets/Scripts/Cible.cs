@@ -2,20 +2,67 @@ using UnityEngine;
 
 public class Cible : MonoBehaviour
 {
+<<<<<<< Updated upstream
     private TargetSpawner spawner;
+=======
+    [Header("FX")]
+>>>>>>> Stashed changes
     public AudioSource audioExplode;
     public GameObject explosionEffect;  // R�f�rence au prefab du Particle System
     public float explosionDuration = 2f;  // Dur�e de l'explosion
 
+<<<<<<< Updated upstream
     void Start()
     {
         spawner = FindObjectOfType<TargetSpawner>();
         audioExplode = GetComponent<AudioSource>();
 
         // Joue le son � l'apparition
+=======
+    [Header("Reset Visuel")]
+    private Renderer rend;
+    private Color baseColor;
+    private Collider coll;
+
+    private GameplayManager gameplayManager;
+
+    void Awake()
+    {
+        // Référence vers le GameplayManager
+        gameplayManager = GameplayManager.Instance;
+
+        if (audioExplode == null)
+            audioExplode = GetComponent<AudioSource>();
+
+        coll = GetComponent<Collider>();
+
+        rend = GetComponent<Renderer>();
+        if (rend != null)
+        {
+            baseColor = rend.material.color;
+        }
+    }
+
+    void OnEnable()
+    {
+        // ✅ Remise à zéro complète à chaque réapparition (TASK 2)
+        ResetState();
+
+        // (Optionnel) Son à l’apparition
+        // Si tu veux garder le son seulement à l'impact, commente ça
+>>>>>>> Stashed changes
         if (audioExplode != null)
         {
-            audioExplode.Play();
+             audioExplode.Play();
+        }
+    }
+
+    // ✅ Quand la cible est désactivée (touchée / reset / sortie écran / etc.)
+    private void OnDisable()
+    {
+        if (GameplayManager.Instance != null)
+        {
+            GameplayManager.Instance.RegisterTargetDespawn();
         }
     }
 
@@ -24,18 +71,57 @@ public class Cible : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Arrow") || collision.gameObject.CompareTag("Bullet"))
         {
+<<<<<<< Updated upstream
             
+=======
+            Hit();
+        }
+    }
+
+    // ✅ LOGIQUE DE “DESTRUCTION” (retour au pool)
+    public void Hit()
+    {
+        if (audioExplode != null)
+>>>>>>> Stashed changes
             audioExplode.Play();
             
             // D�clenche l'effet de particules
             TriggerExplosion();
 
 
+<<<<<<< Updated upstream
             // D�truit la cible
             Destroy(gameObject);
 
             // Informe le spawner qu'une cible a �t� d�truite
             spawner.OnCibleDestroyed(gameObject);
+=======
+        // Sécurité si jamais GameplayManager a été initialisé après
+        if (gameplayManager == null)
+            gameplayManager = GameplayManager.Instance;
+
+        if (gameplayManager != null)
+            gameplayManager.AddScore(1);
+
+        if (coll != null)
+            coll.enabled = false;
+
+        StartCoroutine(ReturnToPoolAfterDelay(0.1f));
+    }
+
+    IEnumerator ReturnToPoolAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // ✅ Retour dans le pool
+        if (TargetPool.Instance != null)
+        {
+            TargetPool.Instance.ReturnTarget(gameObject);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+>>>>>>> Stashed changes
         }
     }
 
