@@ -4,26 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Scenes/MainGame.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/Foret.unity
-    guid: 9bbeea03501e43c46a9a85cba9ff0376
-  - enabled: 1
-    path: Assets/Scenes/Hangar.unity
-    guid: 1f1a23177ab7ffa4faf1ad9bf939ec1f
+  m_Scenes: []
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: f59f2016f7a345e47b053646dba7b631, type: 2}
-    com.unity.input.settings: {fileID: 11400000, guid: 5f8946cea6a93804c9d4c70c99d80452, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b6258a1111a4b5f449d9b79e32a476fa, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: c74fe07638a80814d8411c9953438c7b, type: 2}
-<<<<<<< Updated upstream
-=======
-    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 8b9030e2f02db5a4682328f490b874d9, type: 2}
   m_UseUCBPForAssetBundles: 0
->>>>>>> Stashed changes

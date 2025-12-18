@@ -1,39 +1,24 @@
+﻿using System.Collections;
 using UnityEngine;
 
 public class Cible : MonoBehaviour
 {
-<<<<<<< Updated upstream
     private TargetSpawner spawner;
-=======
+
     [Header("FX")]
->>>>>>> Stashed changes
     public AudioSource audioExplode;
-    public GameObject explosionEffect;  // R�f�rence au prefab du Particle System
-    public float explosionDuration = 2f;  // Dur�e de l'explosion
+    public GameObject explosionEffect;
+    public float explosionDuration = 2f;
 
-<<<<<<< Updated upstream
-    void Start()
-    {
-        spawner = FindObjectOfType<TargetSpawner>();
-        audioExplode = GetComponent<AudioSource>();
-
-        // Joue le son � l'apparition
-=======
     [Header("Reset Visuel")]
     private Renderer rend;
     private Color baseColor;
     private Collider coll;
 
-    private GameplayManager gameplayManager;
-
     void Awake()
     {
-        // Référence vers le GameplayManager
-        gameplayManager = GameplayManager.Instance;
-
-        if (audioExplode == null)
-            audioExplode = GetComponent<AudioSource>();
-
+        spawner = FindObjectOfType<TargetSpawner>();
+        audioExplode = GetComponent<AudioSource>();
         coll = GetComponent<Collider>();
 
         rend = GetComponent<Renderer>();
@@ -48,60 +33,44 @@ public class Cible : MonoBehaviour
         // ✅ Remise à zéro complète à chaque réapparition (TASK 2)
         ResetState();
 
-        // (Optionnel) Son à l’apparition
-        // Si tu veux garder le son seulement à l'impact, commente ça
->>>>>>> Stashed changes
+        // ✅ Son à l’apparition (facultatif)
         if (audioExplode != null)
         {
-             audioExplode.Play();
+            audioExplode.Play();
         }
     }
 
-    // ✅ Quand la cible est désactivée (touchée / reset / sortie écran / etc.)
-    private void OnDisable()
+    // ✅ RESET COMPLET DE LA CIBLE
+    public void ResetState()
     {
-        if (GameplayManager.Instance != null)
+        if (rend != null)
         {
-            GameplayManager.Instance.RegisterTargetDespawn();
+            rend.material.color = baseColor;
+        }
+
+        if (coll != null)
+        {
+            coll.enabled = true;
         }
     }
 
-    // D�tection des collisions
+    // ✅ DÉTECTION DES IMPACTS
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Arrow") || collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Arrow") ||
+            collision.gameObject.CompareTag("Bullet"))
         {
-<<<<<<< Updated upstream
-            
-=======
             Hit();
         }
     }
 
-    // ✅ LOGIQUE DE “DESTRUCTION” (retour au pool)
+    // ✅ LOGIQUE DE DESTRUCTION (SANS DESTROY)
     public void Hit()
     {
         if (audioExplode != null)
->>>>>>> Stashed changes
             audioExplode.Play();
-            
-            // D�clenche l'effet de particules
-            TriggerExplosion();
 
-
-<<<<<<< Updated upstream
-            // D�truit la cible
-            Destroy(gameObject);
-
-            // Informe le spawner qu'une cible a �t� d�truite
-            spawner.OnCibleDestroyed(gameObject);
-=======
-        // Sécurité si jamais GameplayManager a été initialisé après
-        if (gameplayManager == null)
-            gameplayManager = GameplayManager.Instance;
-
-        if (gameplayManager != null)
-            gameplayManager.AddScore(1);
+        TriggerExplosion();
 
         if (coll != null)
             coll.enabled = false;
@@ -113,7 +82,11 @@ public class Cible : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        // ✅ Retour dans le pool
+        // ✅ Informe le spawner
+        if (spawner != null)
+            spawner.OnCibleDestroyed(gameObject);
+
+        // ✅ Retour dans le pool (AU LIEU DE Destroy)
         if (TargetPool.Instance != null)
         {
             TargetPool.Instance.ReturnTarget(gameObject);
@@ -121,18 +94,21 @@ public class Cible : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
->>>>>>> Stashed changes
         }
     }
 
-    // M�thode pour d�clencher l'explosion
+    // ✅ EXPLOSION VISUELLE
     void TriggerExplosion()
     {
-        // Instancie l'effet d'explosion � la position de la cible
         if (explosionEffect != null)
         {
-            GameObject explosion = Instantiate(explosionEffect, transform.position, transform.rotation);
-            Destroy(explosion, explosionDuration);  // D�truit l'explosion apr�s un d�lai
+            GameObject explosion = Instantiate(
+                explosionEffect,
+                transform.position,
+                transform.rotation
+            );
+
+            Destroy(explosion, explosionDuration); // OK ici
         }
     }
 }

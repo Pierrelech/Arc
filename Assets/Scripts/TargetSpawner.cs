@@ -1,93 +1,67 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetSpawner : MonoBehaviour
 {
-<<<<<<< Updated upstream
-    public GameObject cible;  // Le prefab de la cible
-    public Transform player;  // Le joueur autour duquel les cibles apparaissent
+    public Transform player;      // Le joueur autour duquel les cibles apparaissent
     public float spawnRadius = 10f;  // Rayon autour du joueur
-    public float spawnHeight = 5f;   // Hauteur � laquelle les cibles apparaissent
-    private List<GameObject> activeCibles = new List<GameObject>(); // Liste des cibles actives
-    private int maxCibles = 5;
-=======
-    public Transform player;           // Le joueur autour duquel les cibles apparaissent
-    public float spawnRadius = 10f;    // Rayon autour du joueur
-    public float spawnHeight = 5f;     // Hauteur à laquelle les cibles apparaissent
+    public float spawnHeight = 5f;   // Hauteur à laquelle les cibles apparaissent
+    public int maxCibles = 5;        // Nombre max de cibles en même temps
+    public float respawnDelay = 1f;  // Délai avant réapparition
 
-    public float spawnInterval = 1.0f; // Temps entre deux tentatives de spawn
->>>>>>> Stashed changes
+    private List<GameObject> activeCibles = new List<GameObject>();
 
-    private void Start()
+    void Start()
     {
-        // On lance une boucle de spawn régulière
-        StartCoroutine(SpawnLoop());
-    }
-
-    private IEnumerator SpawnLoop()
-    {
-        WaitForSeconds wait = new WaitForSeconds(spawnInterval);
-
-        while (true)
+        // Crée les cibles initiales
+        for (int i = 0; i < maxCibles; i++)
         {
-            yield return wait;
-
-            // sécurité : s'il manque des singletons
-            if (TargetPool.Instance == null || GameplayManager.Instance == null)
-                continue;
-
-            // Est-ce qu'on a le droit de spawn une nouvelle cible ?
-            if (!GameplayManager.Instance.CanSpawnTarget())
-                continue;
-
             SpawnTarget();
         }
     }
 
-    private void SpawnTarget()
+    void SpawnTarget()
     {
-<<<<<<< Updated upstream
-        // G�n�re une position al�atoire autour du joueur
-=======
-        // Récupère une cible dans le pool
-        GameObject newCible = TargetPool.Instance.GetTarget();
-        if (newCible == null)
+        if (TargetPool.Instance == null)
         {
-            Debug.LogWarning("TargetPool n'a pas de cible dispo !");
+            Debug.LogWarning("TargetPool non présent dans la scène !");
             return;
         }
 
+        // Récupère une cible dans le pool
+        GameObject newCible = TargetPool.Instance.GetTarget();
+
         // Génère une position aléatoire autour du joueur
->>>>>>> Stashed changes
         Vector3 randomPos = player.position + (Random.insideUnitSphere * spawnRadius);
         randomPos.y = spawnHeight;  // Place la cible en hauteur
 
-        // Instancie la cible
-        GameObject newCible = Instantiate(cible, randomPos, Quaternion.identity);
+        newCible.transform.position = randomPos;
 
         // Oriente la cible vers le joueur
         newCible.transform.LookAt(player);
 
-        // Active la cible (au cas où le pool ne l’a pas déjà activée)
-        newCible.SetActive(true);
+        // Ajoute la cible à la liste des cibles actives
+        activeCibles.Add(newCible);
+    }
 
-<<<<<<< Updated upstream
     public void OnCibleDestroyed(GameObject cibleDetruite)
     {
-        // Retire la cible d�truite de la liste
+        // Retire la cible de la liste des actives
         activeCibles.Remove(cibleDetruite);
 
-        // R�instancie la cible apr�s 1 seconde
+        // Réapparition après un délai
         StartCoroutine(RespawnTarget());
     }
 
     IEnumerator RespawnTarget()
     {
-        yield return new WaitForSeconds(1f);
-        SpawnTarget();
-=======
-        // 🔹 On prévient le GameplayManager qu'une cible de plus est active
-        GameplayManager.Instance.RegisterTargetSpawn();
->>>>>>> Stashed changes
+        yield return new WaitForSeconds(respawnDelay);
+
+        // On respawn seulement si on n’a pas déjà atteint le max
+        if (activeCibles.Count < maxCibles)
+        {
+            SpawnTarget();
+        }
     }
 }
