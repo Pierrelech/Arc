@@ -2817,6 +2817,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 64000013372987850, guid: a22c0c7e17126fa4f89534dc98bcac8f, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4057,9 +4061,6 @@ MonoBehaviour:
   initialSize: 20
   maxDistance: 5
   cleanupInterval: 5
-  player: {fileID: 575587406}
-  maxDistanceToPlayer: 5
-  cleanupEvery: 5
 --- !u!4 &513743866
 Transform:
   m_ObjectHideFlags: 0
@@ -10905,12 +10906,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleTransform: {fileID: 493247167}
   fireRate: 0.2
-  damage: 10
-  range: 100
-  hitMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  bulletPrefab: {fileID: 0}
   bulletSpeed: 30
   muzzleFlash: {fileID: 799013075}
   audioSource: {fileID: 1707112649}
