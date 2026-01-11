@@ -1,88 +1,201 @@
 fileFormatVersion: 2
 guid: 165871bb4fa915847973b6955c7a670d
-timeCreated: 1484075312
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: hands:b_r_grip
-    100002: hands:b_r_hand
-    100004: hands:b_r_hand_ignore
-    100006: hands:b_r_index1
-    100008: hands:b_r_index2
-    100010: hands:b_r_index3
-    100012: hands:b_r_index_ignore
-    100014: hands:b_r_middle1
-    100016: hands:b_r_middle2
-    100018: hands:b_r_middle3
-    100020: hands:b_r_middle_ignore
-    100022: hands:b_r_pinky0
-    100024: hands:b_r_pinky1
-    100026: hands:b_r_pinky2
-    100028: hands:b_r_pinky3
-    100030: hands:b_r_pinky_ignore
-    100032: hands:b_r_ring1
-    100034: hands:b_r_ring2
-    100036: hands:b_r_ring3
-    100038: hands:b_r_ring_ignore
-    100040: hands:b_r_thumb1
-    100042: hands:b_r_thumb2
-    100044: hands:b_r_thumb3
-    100046: hands:b_r_thumb_ignore
-    100048: hands:r_hand_world
-    100050: //RootNode
-    400000: hands:b_r_grip
-    400002: hands:b_r_hand
-    400004: hands:b_r_hand_ignore
-    400006: hands:b_r_index1
-    400008: hands:b_r_index2
-    400010: hands:b_r_index3
-    400012: hands:b_r_index_ignore
-    400014: hands:b_r_middle1
-    400016: hands:b_r_middle2
-    400018: hands:b_r_middle3
-    400020: hands:b_r_middle_ignore
-    400022: hands:b_r_pinky0
-    400024: hands:b_r_pinky1
-    400026: hands:b_r_pinky2
-    400028: hands:b_r_pinky3
-    400030: hands:b_r_pinky_ignore
-    400032: hands:b_r_ring1
-    400034: hands:b_r_ring2
-    400036: hands:b_r_ring3
-    400038: hands:b_r_ring_ignore
-    400040: hands:b_r_thumb1
-    400042: hands:b_r_thumb2
-    400044: hands:b_r_thumb3
-    400046: hands:b_r_thumb_ignore
-    400048: hands:r_hand_world
-    400050: //RootNode
-    7400000: r_hand_pinch_anim
-    9500000: //RootNode
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: hands:b_r_grip
+  - first:
+      1: 100002
+    second: hands:b_r_hand
+  - first:
+      1: 100004
+    second: hands:b_r_hand_ignore
+  - first:
+      1: 100006
+    second: hands:b_r_index1
+  - first:
+      1: 100008
+    second: hands:b_r_index2
+  - first:
+      1: 100010
+    second: hands:b_r_index3
+  - first:
+      1: 100012
+    second: hands:b_r_index_ignore
+  - first:
+      1: 100014
+    second: hands:b_r_middle1
+  - first:
+      1: 100016
+    second: hands:b_r_middle2
+  - first:
+      1: 100018
+    second: hands:b_r_middle3
+  - first:
+      1: 100020
+    second: hands:b_r_middle_ignore
+  - first:
+      1: 100022
+    second: hands:b_r_pinky0
+  - first:
+      1: 100024
+    second: hands:b_r_pinky1
+  - first:
+      1: 100026
+    second: hands:b_r_pinky2
+  - first:
+      1: 100028
+    second: hands:b_r_pinky3
+  - first:
+      1: 100030
+    second: hands:b_r_pinky_ignore
+  - first:
+      1: 100032
+    second: hands:b_r_ring1
+  - first:
+      1: 100034
+    second: hands:b_r_ring2
+  - first:
+      1: 100036
+    second: hands:b_r_ring3
+  - first:
+      1: 100038
+    second: hands:b_r_ring_ignore
+  - first:
+      1: 100040
+    second: hands:b_r_thumb1
+  - first:
+      1: 100042
+    second: hands:b_r_thumb2
+  - first:
+      1: 100044
+    second: hands:b_r_thumb3
+  - first:
+      1: 100046
+    second: hands:b_r_thumb_ignore
+  - first:
+      1: 100048
+    second: hands:r_hand_world
+  - first:
+      1: 100050
+    second: //RootNode
+  - first:
+      4: 400000
+    second: hands:b_r_grip
+  - first:
+      4: 400002
+    second: hands:b_r_hand
+  - first:
+      4: 400004
+    second: hands:b_r_hand_ignore
+  - first:
+      4: 400006
+    second: hands:b_r_index1
+  - first:
+      4: 400008
+    second: hands:b_r_index2
+  - first:
+      4: 400010
+    second: hands:b_r_index3
+  - first:
+      4: 400012
+    second: hands:b_r_index_ignore
+  - first:
+      4: 400014
+    second: hands:b_r_middle1
+  - first:
+      4: 400016
+    second: hands:b_r_middle2
+  - first:
+      4: 400018
+    second: hands:b_r_middle3
+  - first:
+      4: 400020
+    second: hands:b_r_middle_ignore
+  - first:
+      4: 400022
+    second: hands:b_r_pinky0
+  - first:
+      4: 400024
+    second: hands:b_r_pinky1
+  - first:
+      4: 400026
+    second: hands:b_r_pinky2
+  - first:
+      4: 400028
+    second: hands:b_r_pinky3
+  - first:
+      4: 400030
+    second: hands:b_r_pinky_ignore
+  - first:
+      4: 400032
+    second: hands:b_r_ring1
+  - first:
+      4: 400034
+    second: hands:b_r_ring2
+  - first:
+      4: 400036
+    second: hands:b_r_ring3
+  - first:
+      4: 400038
+    second: hands:b_r_ring_ignore
+  - first:
+      4: 400040
+    second: hands:b_r_thumb1
+  - first:
+      4: 400042
+    second: hands:b_r_thumb2
+  - first:
+      4: 400044
+    second: hands:b_r_thumb3
+  - first:
+      4: 400046
+    second: hands:b_r_thumb_ignore
+  - first:
+      4: 400048
+    second: hands:r_hand_world
+  - first:
+      4: 400050
+    second: //RootNode
+  - first:
+      74: 7400000
+    second: r_hand_pinch_anim
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: r_hand_pinch_anim
       takeName: Take 001
+      internalID: 0
       firstFrame: 4
       lastFrame: 5
       wrapMode: 0
@@ -166,28 +279,181 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: r_hand_pinch_anim(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:r_hand_world
+      parentName: r_hand_pinch_anim(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_hand
+      parentName: hands:r_hand_world
+      position: {x: 0.345514, y: -0.10252699, z: 1.05123}
+      rotation: {x: 0.5564005, y: -0.018750945, z: 0.76965183, w: 0.3125748}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_grip
+      parentName: hands:b_r_hand
+      position: {x: -0.07215819, y: 0.013962141, z: -0.018991696}
+      rotation: {x: 0.5564005, y: -0.018750928, z: 0.76965183, w: -0.31257483}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_hand_ignore
+      parentName: hands:b_r_hand
+      position: {x: -0.13611329, y: 0.00000039665923, z: 0.0000006813971}
+      rotation: {x: 0.22704248, y: -1.4145536e-16, z: 4.477739e-18, w: 0.9738849}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_index1
+      parentName: hands:b_r_hand
+      position: {x: -0.08707797, y: 0.035099972, z: 0.0068147103}
+      rotation: {x: -0.0976216, y: 0.7188409, z: 0.627342, w: 0.28316066}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_index2
+      parentName: hands:b_r_index1
+      position: {x: 0.04157489, y: -0.0000002622628, z: -0.00000038978715}
+      rotation: {x: 0, y: -0, z: -0.37370354, w: 0.9275482}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_index3
+      parentName: hands:b_r_index2
+      position: {x: 0.022152938, y: -0.00000022278307, z: -0.000000035388048}
+      rotation: {x: 0.0000000071348896, y: 0.0000000021458102, z: -0.39989862, w: 0.9165594}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_index_ignore
+      parentName: hands:b_r_index3
+      position: {x: 0.029121783, y: 0.0000002658625, z: 0.0000010456445}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_middle1
+      parentName: hands:b_r_hand
+      position: {x: -0.09142202, y: 0.009532635, z: 0.010838787}
+      rotation: {x: -0.15063614, y: 0.6279844, z: 0.7115672, w: 0.27679682}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_middle2
+      parentName: hands:b_r_middle1
+      position: {x: 0.04596702, y: -6.4383804e-10, z: -0.00000003982895}
+      rotation: {x: 1.37384244e-17, y: -1.9944315e-16, z: -0.30181184, w: 0.95336753}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_middle3
+      parentName: hands:b_r_middle2
+      position: {x: 0.029590234, y: -0.00000017799228, z: -0.000000063619794}
+      rotation: {x: 0.0000000074505486, y: 2.1995279e-11, z: -0.13419232, w: 0.99095535}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_middle_ignore
+      parentName: hands:b_r_middle3
+      position: {x: 0.026469523, y: 0.0000004068423, z: 0.00000019527813}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_pinky0
+      parentName: hands:b_r_hand
+      position: {x: -0.031274725, y: -0.019069267, z: -0.011509167}
+      rotation: {x: -0.46882802, y: -0.082201734, z: 0.072371535, w: 0.87647337}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_pinky1
+      parentName: hands:b_r_pinky0
+      position: {x: -0.05356621, y: -0.0024395068, z: 0.0014644878}
+      rotation: {x: 0.025273113, y: -0.071724534, z: 0.96780765, w: 0.23992747}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_pinky2
+      parentName: hands:b_r_pinky1
+      position: {x: 0.033355847, y: 0.0000004193135, z: 0.00000030447453}
+      rotation: {x: -1.0320353e-17, y: 8.378469e-17, z: -0.28393373, w: 0.95884395}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_pinky3
+      parentName: hands:b_r_pinky2
+      position: {x: 0.017418418, y: -0.00000049037294, z: -0.00000080218643}
+      rotation: {x: -1.1889356e-17, y: 9.652247e-17, z: -0.16875951, w: 0.9856573}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_pinky_ignore
+      parentName: hands:b_r_pinky3
+      position: {x: 0.01944108, y: 0.00000018051705, z: 0.000000684117}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_ring1
+      parentName: hands:b_r_hand
+      position: {x: -0.089531094, y: -0.012713966, z: 0.0018533061}
+      rotation: {x: -0.12933321, y: 0.5538907, z: 0.79313236, w: 0.21775922}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_ring2
+      parentName: hands:b_r_ring1
+      position: {x: 0.03857198, y: 0.000000019344908, z: -0.00000011757956}
+      rotation: {x: 0, y: -0, z: -0.3026438, w: 0.9531038}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_ring3
+      parentName: hands:b_r_ring2
+      position: {x: 0.025775367, y: 0.00000023005764, z: 0.00000026507698}
+      rotation: {x: 1.2973352e-18, y: -2.7823656e-17, z: -0.1302646, w: 0.9914793}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_ring_ignore
+      parentName: hands:b_r_ring3
+      position: {x: 0.024214193, y: -0.00000003789957, z: 0.00000001870374}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_thumb1
+      parentName: hands:b_r_hand
+      position: {x: -0.030877931, y: 0.04147109, z: -0.020563869}
+      rotation: {x: 0.19099353, y: 0.7476961, z: -0.5693642, w: 0.28336635}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_thumb2
+      parentName: hands:b_r_thumb1
+      position: {x: 0.03258561, y: 0.0000027154815, z: -0.00000027681938}
+      rotation: {x: 0.0054558646, y: 0.06778122, z: -0.08004707, w: 0.9944689}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_thumb3
+      parentName: hands:b_r_thumb2
+      position: {x: 0.026375083, y: -0.00000313834, z: 0.00000024626075}
+      rotation: {x: 0.10113722, y: -0.015368484, z: -0.14944401, w: 0.98346406}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hands:b_r_thumb_ignore
+      parentName: hands:b_r_thumb3
+      position: {x: 0.034079235, y: 0.00000027444756, z: 0.00000012232366}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -195,14 +461,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
